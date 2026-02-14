@@ -1,73 +1,98 @@
-# React + TypeScript + Vite
+<div align="center">
+  <h1>🔥 Chapa &amp; Fogo</h1>
+  <p><strong>Landing page de alta conversão</strong> para hamburgueria artesanal — dark, elegante e com glassmorphism.</p>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+  <p>
+    <a href="#-rodando-localmente">Rodar localmente</a> •
+    <a href="#-stack">Stack</a> •
+    <a href="#-estrutura">Estrutura</a> •
+    <a href="#-customização-rápida">Customização</a>
+  </p>
 
-Currently, two official plugins are available:
+  <p>
+    <img alt="Vite" src="https://img.shields.io/badge/Vite-7.x-646CFF?logo=vite&logoColor=white">
+    <img alt="React" src="https://img.shields.io/badge/React-19.x-149ECA?logo=react&logoColor=white">
+    <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white">
+    <img alt="Tailwind" src="https://img.shields.io/badge/TailwindCSS-3.x-38BDF8?logo=tailwindcss&logoColor=white">
+  </p>
+</div>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## ✨ O que tem aqui
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Hero com imagem de fundo + overlay cinematográfico
+- Navbar transparente sobre o hero
+- Cards com efeito glass + animação de entrada (fade-up)
+- Seção de Cardápio com imagens reais dos lanches + fallback automático
+- Layout responsivo (mobile-first)
 
-## Expanding the ESLint configuration
+## 🧱 Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React + TypeScript
+- Vite
+- Tailwind CSS
+- Lucide React (ícones)
+- Google Fonts: Oswald (títulos) + Inter (texto)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🚀 Rodando localmente
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Acesse: http://localhost:5173/
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🧪 Scripts
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev      # ambiente de desenvolvimento
+npm run lint     # eslint
+npm run build    # build de produção
+npm run preview  # prévia do build
 ```
+
+## 🗂️ Estrutura
+
+- [src/App.tsx](./src/App.tsx) — landing page completa (seções, cards, animações e cardápio)
+- [src/index.css](./src/index.css) — Tailwind + animações
+- [tailwind.config.js](./tailwind.config.js) — tema (cores, fontes, glow)
+- [index.html](./index.html) — fontes e metadados
+
+## 🎨 Customização rápida
+
+**Cores / fontes / glow**
+
+Edite em [tailwind.config.js](./tailwind.config.js):
+- `colors.charcoal` e `colors.amberGold`
+- `fontFamily.title` e `fontFamily.body`
+- `boxShadow.glow`
+
+**Imagem do hero**
+
+Coloque `hero-bg.png` em `public/` e o hero usa automaticamente:
+- `public/hero-bg.png`
+
+Se não existir, ele usa um fallback online.
+
+**Imagens do cardápio**
+
+Os cards usam fotos reais (Unsplash). Se der erro de rede, cai para um fallback gerado.
+
+## 🌐 Deploy
+
+Qualquer host estático funciona (Vercel, Netlify, GitHub Pages via build).
+
+Build:
+
+```bash
+npm run build
+```
+
+O output fica em `dist/`.
+
+## 📷 Créditos
+
+- Fotos do cardápio: Unsplash (via `source.unsplash.com`)
+- Tipografia: Google Fonts (Inter / Oswald)
