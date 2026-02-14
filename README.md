@@ -3,10 +3,10 @@
   <p><strong>Landing page de alta conversão</strong> para hamburgueria artesanal — dark, elegante e com glassmorphism.</p>
 
   <p>
+    <a href="#-preview">Preview</a> •
     <a href="#-rodando-localmente">Rodar localmente</a> •
     <a href="#-stack">Stack</a> •
-    <a href="#-estrutura">Estrutura</a> •
-    <a href="#-customização-rápida">Customização</a>
+    <a href="#-estrutura">Estrutura</a>
   </p>
 
   <p>
@@ -15,9 +15,25 @@
     <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white">
     <img alt="Tailwind" src="https://img.shields.io/badge/TailwindCSS-3.x-38BDF8?logo=tailwindcss&logoColor=white">
   </p>
+
+  <br />
+
+  <img src="docs/screenshots/hero-preview.png" alt="Hero Section" width="100%" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
 </div>
 
 ---
+
+## 👀 Preview
+
+<div align="center">
+  <h3>Menu &amp; Experiência</h3>
+  <img src="docs/screenshots/menu-preview.png" alt="Menu Section" width="100%" style="border-radius: 8px; margin-bottom: 20px;">
+  
+  <h3>Footer &amp; Informações</h3>
+  <img src="docs/screenshots/footer-preview.png" alt="Footer Section" width="100%" style="border-radius: 8px;">
+</div>
+
+<br />
 
 ## ✨ O que tem aqui
 
