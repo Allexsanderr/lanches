@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import Lenis from 'lenis'
 import {
   Flame,
   Hamburger,
@@ -23,11 +24,15 @@ type MenuItem = {
 function FadeIn({
   children,
   className = '',
+  delay = 0,
+  as: Component = 'div',
 }: {
   children: React.ReactNode
   className?: string
+  delay?: number
+  as?: React.ElementType
 }) {
-  const ref = useRef<HTMLDivElement | null>(null)
+  const ref = useRef<HTMLElement | null>(null)
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
@@ -49,8 +54,9 @@ function FadeIn({
   }, [visible])
 
   return (
-    <div
+    <Component
       ref={ref}
+      style={{ animationDelay: `${delay}ms` }}
       className={[
         'will-change-transform',
         visible ? 'animate-fade-up' : 'opacity-0',
@@ -58,7 +64,7 @@ function FadeIn({
       ].join(' ')}
     >
       {children}
-    </div>
+    </Component>
   )
 }
 
@@ -164,6 +170,27 @@ function menuImageDataUri({
 }
 
 function App() {
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+    })
+
+    function raf(time: number) {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
+
+    requestAnimationFrame(raf)
+
+    return () => {
+      lenis.destroy()
+    }
+  }, [])
+
   const menuItems = useMemo<MenuItem[]>(
     () => [
       {
@@ -172,7 +199,8 @@ function App() {
         description:
           'Blend da casa, cheddar inglês, cebola caramelizada e bacon.',
         accent: 'amber',
-        imageSrc: 'https://source.unsplash.com/HctOsrD_z_c/1200x900',
+        imageSrc:
+          'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80',
         imageFallbackSrc: menuImageDataUri({
           title: 'Clássico',
           subtitle: 'Cheddar inglês • Bacon • Cebola caramelizada',
@@ -184,7 +212,8 @@ function App() {
         price: 'R$ 38,00',
         description: 'Jalapeño, biquinho, queijo defumado e molho especial.',
         accent: 'heat',
-        imageSrc: 'https://source.unsplash.com/I7A_pHLcQK8/1200x900',
+        imageSrc:
+          'https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&fit=crop&w=800&q=80',
         imageFallbackSrc: menuImageDataUri({
           title: 'Picante',
           subtitle: 'Jalapeño • Queijo defumado • Molho especial',
@@ -196,7 +225,8 @@ function App() {
         price: 'R$ 32,00',
         description: 'Extra cheddar, bacon crocante, brioche na manteiga.',
         accent: 'smoke',
-        imageSrc: 'https://source.unsplash.com/F_xGk7V0Xbc/1200x900',
+        imageSrc:
+          'https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80',
         imageFallbackSrc: menuImageDataUri({
           title: 'Cheddar',
           subtitle: 'Extra cheddar • Bacon crocante • Brioche',
@@ -208,7 +238,8 @@ function App() {
         price: 'R$ 30,00',
         description: 'Burger de grão de bico, avocado, tomate e cebola roxa.',
         accent: 'green',
-        imageSrc: 'https://source.unsplash.com/nwLe7057AdY/1200x900',
+        imageSrc:
+          'https://images.unsplash.com/photo-1520072959219-c595dc870360?auto=format&fit=crop&w=800&q=80',
         imageFallbackSrc: menuImageDataUri({
           title: 'Vegano',
           subtitle: 'Grão de bico • Avocado • Cebola roxa',
@@ -301,17 +332,31 @@ function App() {
                 Sabores artesanais na pedra
               </FadeIn>
 
-              <FadeIn className="mt-6">
+              <div className="mt-6 animate-float-slow">
                 <h1 className="font-title text-5xl font-bold uppercase leading-[0.88] tracking-tight text-white sm:text-6xl md:text-7xl">
-                  <span className="block">A Chapa</span>
-                  <span className="block">Mais Quente</span>
-                  <span className="block">Da Cidade.</span>
+                  <FadeIn as="span" className="block" delay={0}>
+                    A Chapa
+                  </FadeIn>
+                  <FadeIn
+                    as="span"
+                    className="block animate-shimmer bg-gradient-to-r from-amber-200 via-amber-500 to-amber-600 bg-[length:200%_auto] bg-clip-text text-transparent drop-shadow-sm"
+                    delay={200}
+                  >
+                    Mais Quente
+                  </FadeIn>
+                  <FadeIn as="span" className="block" delay={400}>
+                    Da Cidade.
+                  </FadeIn>
                 </h1>
-                <p className="mt-4 max-w-md text-sm leading-relaxed text-white/75 sm:text-base">
+                <FadeIn
+                  as="p"
+                  className="mt-4 max-w-md text-sm leading-relaxed text-white/75 sm:text-base"
+                  delay={600}
+                >
                   Defumado elegante, crosta perfeita e suculência no ponto. O
                   cheiro chega antes — e a vontade não espera.
-                </p>
-              </FadeIn>
+                </FadeIn>
+              </div>
 
               <FadeIn className="mt-7">
                 <a
